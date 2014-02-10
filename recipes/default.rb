@@ -2,9 +2,7 @@
 # Cookbook Name:: auth-proxy
 # Recipe:: default
 #
-# Copyright (C) 2014 YOUR_NAME
-# 
-# All rights reserved - Do Not Redistribute
+# Copyright (C) 2014 Myplanet Digital, Inc.
 #
 
 include_recipe 'nodejs'
@@ -18,8 +16,8 @@ execute "install-dependencies" do
 end
 
 git "/opt/auth-proxy" do
-  repository "https://github.com/tizzo/auth-proxy.git"
-  reference "master"
+  repository node['auth_proxy']['git_url']
+  reference node['auth_proxy']['git_ref']
   action :sync
   notifies :run, "execute[install-dependencies]", :immediately
 end
